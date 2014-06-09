@@ -62,7 +62,7 @@
                     }];
 
                 },
-                $exceptionHandler: function $ExceptionHandlerProvider() {
+                $exceptionHandler: function () {
                     this.$get = ['$log', 'bugsnag', function ($log, bugsnag) {
                         return function (exception, cause) {
                             $log.error.apply($log, arguments);

@@ -54,6 +54,11 @@
                         return _self;
                     };
 
+                    this._testRequest = function (testRequest) {
+                        _bugsnag.testRequest = testRequest;
+                        return _self;
+                    };
+
                     this.$get = ['$injector', function ($injector) {
                         if (_beforeNotify) {
                             _bugsnag.beforeNotify = angular.isString(_beforeNotify) ? $injector.get(_beforeNotify) : $injector.invoke(_beforeNotify);
@@ -62,7 +67,7 @@
                     }];
 
                 },
-                $exceptionHandler: function $ExceptionHandlerProvider() {
+                $exceptionHandler: function () {
                     this.$get = ['$log', 'bugsnag', function ($log, bugsnag) {
                         return function (exception, cause) {
                             $log.error.apply($log, arguments);
