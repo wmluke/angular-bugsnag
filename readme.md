@@ -2,6 +2,9 @@
 
 Angular wrapper for [Bugsnag](https://github.com/bugsnag/bugsnag-js).
 
+[![Build Status](https://travis-ci.org/wmluke/angular-bugsnag.svg)](https://travis-ci.org/wmluke/angular-bugsnag)
+[![Coverage Status](https://coveralls.io/repos/wmluke/angular-bugsnag/badge.png)](https://coveralls.io/r/wmluke/angular-bugsnag)
+
 Specifically, `angular-bugsnag` does the following...
 
 * Provides `bugsnagProvider` to configure the `bugsnag` client and also to inject `bugsnag` as needed
