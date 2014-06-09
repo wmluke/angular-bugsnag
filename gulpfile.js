@@ -70,7 +70,8 @@ gulp.task('test', function () {
 gulp.task('test-debug', function () {
     karma.start({
         configFile: path.resolve('karma.conf.js'),
-        singleRun: false
+        singleRun: false,
+        reporters: ['dots', 'progress', 'junit']
     }, function (exitCode) {
         gutil.log('Karma has exited with ' + exitCode);
         process.exit(exitCode);

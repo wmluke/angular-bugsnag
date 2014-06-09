@@ -1,11 +1,13 @@
 (function () {
     'use strict';
 
+    var _bugsnag;
+
     angular.module('angular-bugsnag', [])
         .config(['$provide', function ($provide) {
             $provide.provider({
                 bugsnag: function () {
-                    var _bugsnag = Bugsnag.noConflict();
+                    _bugsnag = _bugsnag || Bugsnag.noConflict();
                     var _self = this;
                     var _beforeNotify;
 

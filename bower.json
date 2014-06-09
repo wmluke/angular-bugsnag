@@ -1,6 +1,15 @@
 {
   "name": "angular-bugsnag",
   "version": "0.1.0",
+    "author": "Luke Bunselmeyer <wmlukeb@gmail.com>",
+    "homepage": "https://github.com/wmluke/angular-bugsnag",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/wmluke/angular-bugsnag.git"
+    },
+    "bugs": {
+        "url": "https://github.com/wmluke/angular-bugsnag/issues"
+    },
   "main": [
     "dist/angular-bugsnag.js"
   ],
