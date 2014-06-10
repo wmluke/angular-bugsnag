@@ -10,6 +10,20 @@ Specifically, `angular-bugsnag` does the following...
 * Provides `bugsnagProvider` to configure the `bugsnag` client and also to inject `bugsnag` as needed
 * Overrides the default angular `$exceptionHandler` to send uncaught exceptions to Bugsnag
 
+## Installation
+
+Download [angular-bugsnag.js](https://raw.githubusercontent.com/wmluke/angular-bugsnag/master/dist/angular-bugsnag.js) or install with bower.
+
+```bash
+$ bower install angular-bugsnag --save
+```
+
+Load the `angular-bugsnag` module into your app...
+
+```javascript
+angular.module('app', ['angular-bugsnag'])
+```
+
 ## Example Usage
 
 ```javascript
