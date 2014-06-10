@@ -104,7 +104,7 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('bump', function () {
-    gulp.src(['./bower.json', ['./package.json']])
+    gulp.src(['./bower.json', './package.json'])
         .pipe($.bump({ indent: 4 }))
         .pipe(gulp.dest('./'));
 });
