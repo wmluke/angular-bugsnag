@@ -1,6 +1,6 @@
 {
-  "name": "angular-bugsnag",
-  "version": "0.1.0",
+    "name": "angular-bugsnag",
+    "version": "0.1.1",
     "author": "Luke Bunselmeyer <wmlukeb@gmail.com>",
     "homepage": "https://github.com/wmluke/angular-bugsnag",
     "repository": {
@@ -10,26 +10,26 @@
     "bugs": {
         "url": "https://github.com/wmluke/angular-bugsnag/issues"
     },
-  "main": [
-    "dist/angular-bugsnag.js"
-  ],
-  "ignore": [
-    "test",
-    "src/.jshintrc",
-    ".jshintrc",
-    ".travis.yml",
-    "karma.conf.js",
-    "Gruntfile.js",
-    "Makefile"
-  ],
-  "dependencies": {
-    "angular": "~1.2.17",
-    "bugsnag": "~2.3.5"
-  },
-  "devDependencies": {
-    "jquery": "~2.1.1",
-    "bootstrap-sass": "~3.0.2",
-    "angular-mocks": "~1.2.17"
-  },
-  "license": "MIT"
+    "main": [
+        "dist/angular-bugsnag.js"
+    ],
+    "ignore": [
+        "test",
+        "src/.jshintrc",
+        ".jshintrc",
+        ".travis.yml",
+        "karma.conf.js",
+        "Gruntfile.js",
+        "Makefile"
+    ],
+    "dependencies": {
+        "angular": "~1.2.17",
+        "bugsnag": "~2.3.5"
+    },
+    "devDependencies": {
+        "jquery": "~2.1.1",
+        "bootstrap-sass": "~3.0.2",
+        "angular-mocks": "~1.2.17"
+    },
+    "license": "MIT"
 }

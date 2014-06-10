@@ -1,5 +1,5 @@
-/**!
- * @license angular-bugsnag v0.1.0
+/**! 
+ * @license angular-bugsnag v0.1.1
  * Copyright (c) 2013 Luke Bunselmeyer <wmlukeb@gmail.com>. https://github.com/wmluke/angular-bugsnag
  * License: MIT
  */
@@ -12,8 +12,7 @@
         .config(['$provide', function ($provide) {
             $provide.provider({
                 bugsnag: function () {
-                    console.log('_bugsnag', _bugsnag);
-                    _bugsnag = _bugsnag ? _bugsnag : Bugsnag.noConflict();
+                    _bugsnag = _bugsnag || Bugsnag.noConflict();
                     var _self = this;
                     var _beforeNotify;
 
