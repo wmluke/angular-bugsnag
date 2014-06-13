@@ -44,14 +44,19 @@ describe('angular-bugsnag', function () {
     }));
 
 
-    it('should be configured with bugsnagProvider', inject(function ($log) {
+    it('should be configured with bugsnagProvider', inject(function ($log, $location) {
         var actual = {};
+
+        spyOn($location, 'url').andCallFake(function () {
+            return '/foo/bar'
+        });
 
         testRequest.andCallFake(function (url, params) {
             actual.url = url;
             actual.params = params;
         });
 
+        bugsnag.fixContext();
         bugsnag.notify('fail');
 
         expect(actual.url).toBe('https://notify.bugsnag.com/js');
@@ -61,11 +66,16 @@ describe('angular-bugsnag', function () {
         expect(actual.params.appVersion).toBe('0.1.0');
         expect(actual.params.name).toBe('fail');
         expect(actual.params.metaData.aaa).toBe('bbb');
+        expect(actual.params.context).toBe('/foo/bar');
 
         expect($log.debug.logs[0][0]).toBe('fail');
     }));
 
-    it('should report uncaught exceptions', inject(function ($rootScope, dummyService) {
+    it('should report uncaught exceptions', inject(function ($rootScope, dummyService, $location) {
+
+        spyOn($location, 'url').andCallFake(function () {
+            return '/aaa/bbb'
+        });
 
         var actual = {};
 
@@ -82,6 +92,7 @@ describe('angular-bugsnag', function () {
         expect(actual.url).toBe('https://notify.bugsnag.com/js');
         expect(actual.params.name).toBe('TypeError');
         expect(actual.params.message).toBe('\'undefined\' is not an object (evaluating \'this.foo.bar\')');
+        expect(actual.params.context).toBe('/aaa/bbb');
 
     }));
 

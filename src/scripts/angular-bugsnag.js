@@ -68,18 +68,21 @@
                     this.$get = ['$log', 'bugsnag', function ($log, bugsnag) {
                         return function (exception, cause) {
                             $log.error.apply($log, arguments);
+                            bugsnag.fixContext();
                             if (angular.isString(exception)) {
                                 bugsnag.notify(exception);
                             } else {
                                 bugsnag.notifyException(exception);
                             }
-
                         };
                     }];
                 }
             });
         }])
-        .run(['bugsnag', function (bugsnag) {
-            // initialize bugsnag
+        .run(['bugsnag', '$location', function (bugsnag, $location) {
+            // Set the context from $location.url().  We cannot do this above b/c injecting $location creates a circular dependency.
+            bugsnag.fixContext = function () {
+                bugsnag.context = $location.url();
+            };
         }]);
 }());
