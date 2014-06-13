@@ -1,6 +1,6 @@
 {
     "name": "angular-bugsnag",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "scripts": {
         "test": "gulp test",
         "coveralls": "cat ./reports/coverage/*/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
