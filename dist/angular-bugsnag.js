@@ -41,6 +41,16 @@
                         return _self;
                     };
 
+                    this.projectRoot = function (projectRoot) {
+                        _bugsnag.projectRoot = projectRoot;
+                        return _self;
+                    };
+
+                    this.endpoint = function (endpoint) {
+                        _bugsnag.endpoint = endpoint;
+                        return _self;
+                    };
+
                     this.metaData = function (metaData) {
                         _bugsnag.metaData = metaData;
                         return _self;
@@ -73,21 +83,27 @@
                     this.$get = ['$log', 'bugsnag', function ($log, bugsnag) {
                         return function (exception, cause) {
                             $log.error.apply($log, arguments);
-                            bugsnag.fixContext();
-                            if (angular.isString(exception)) {
-                                bugsnag.notify(exception);
-                            } else {
-                                bugsnag.notifyException(exception);
+                            try {
+                                bugsnag.fixContext();
+                                if (angular.isString(exception)) {
+                                    bugsnag.notify(exception);
+                                } else {
+                                    bugsnag.notifyException(exception);
+                                }
+                            } catch (e) {
+                                $log.error(e);
                             }
                         };
                     }];
                 }
             });
         }])
-        .run(['bugsnag', '$location', function (bugsnag, $location) {
+        .run(['bugsnag', '$location', '$rootScope', function (bugsnag, $location, $rootScope) {
             // Set the context from $location.url().  We cannot do this above b/c injecting $location creates a circular dependency.
             bugsnag.fixContext = function () {
                 bugsnag.context = $location.url();
             };
+            // refresh the rate-limit
+            $rootScope.$on('$locationChangeSuccess', bugsnag.refresh || angular.noop);
         }]);
 }());

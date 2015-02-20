@@ -4,6 +4,18 @@ describe('angular-bugsnag', function () {
 
     var bugsnag, testRequest;
 
+    beforeEach(function () {
+        this.addMatchers({
+            startWith: function (expected) {
+                var actual = this.actual;
+                this.message = function () {
+                    return 'Expected `' + actual + '` to start with `' + expected + '`'
+                };
+                return actual.lastIndexOf(expected, 0) === 0;
+            }
+        });
+    });
+
     beforeEach(module('angular-bugsnag'));
 
     beforeEach(module(function (bugsnagProvider, $provide) {
@@ -59,9 +71,9 @@ describe('angular-bugsnag', function () {
         bugsnag.fixContext();
         bugsnag.notify('fail');
 
-        expect(actual.url).toBe('https://notify.bugsnag.com/js');
+        expect(actual.url).startWith('https://notify.bugsnag.com/js');
         expect(actual.params.apiKey).toBe('11111111111111111111111111111111');
-        expect(actual.params.user).toEqual({ id: 123, name: 'Jon Doe', email: 'jon.doe@gmail.com' });
+        expect(actual.params.user).toEqual({id: 123, name: 'Jon Doe', email: 'jon.doe@gmail.com'});
         expect(actual.params.releaseStage).toBe('development');
         expect(actual.params.appVersion).toBe('0.1.0');
         expect(actual.params.name).toBe('fail');
@@ -89,7 +101,7 @@ describe('angular-bugsnag', function () {
         });
 
 
-        expect(actual.url).toBe('https://notify.bugsnag.com/js');
+        expect(actual.url).startWith('https://notify.bugsnag.com/js');
         expect(actual.params.name).toBe('TypeError');
         expect(actual.params.message).toBe('\'undefined\' is not an object (evaluating \'this.foo.bar\')');
         expect(actual.params.context).toBe('/aaa/bbb');
