@@ -5,13 +5,17 @@ describe('angular-bugsnag', function () {
     var bugsnag, testRequest;
 
     beforeEach(function () {
-        this.addMatchers({
-            startWith: function (expected) {
-                var actual = this.actual;
-                this.message = function () {
-                    return 'Expected `' + actual + '` to start with `' + expected + '`'
+        jasmine.addMatchers({
+            startWith: function () {
+                return {
+                    compare: function (actual, expected) {
+                        return {
+                            pass: actual.lastIndexOf(expected, 0) === 0,
+                            message: 'Expected `' + actual + '` to start with `' + expected + '`'
+                        }
+                    }
+
                 };
-                return actual.lastIndexOf(expected, 0) === 0;
             }
         });
     });
@@ -59,11 +63,11 @@ describe('angular-bugsnag', function () {
     it('should be configured with bugsnagProvider', inject(function ($log, $location) {
         var actual = {};
 
-        spyOn($location, 'url').andCallFake(function () {
+        spyOn($location, 'url').and.callFake(function () {
             return '/foo/bar'
         });
 
-        testRequest.andCallFake(function (url, params) {
+        testRequest.and.callFake(function (url, params) {
             actual.url = url;
             actual.params = params;
         });
@@ -85,13 +89,13 @@ describe('angular-bugsnag', function () {
 
     it('should report uncaught exceptions', inject(function ($rootScope, dummyService, $location) {
 
-        spyOn($location, 'url').andCallFake(function () {
+        spyOn($location, 'url').and.callFake(function () {
             return '/aaa/bbb'
         });
 
         var actual = {};
 
-        testRequest.andCallFake(function (url, params) {
+        testRequest.and.callFake(function (url, params) {
             actual.url = url;
             actual.params = params;
         });

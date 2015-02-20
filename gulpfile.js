@@ -6,6 +6,8 @@ var karma = require('karma').server;
 var path = require('path');
 var $ = require('gulp-load-plugins')();
 var pkg = require('./bower.json');
+var serveStatic = require('serve-static');
+var serveIndex = require('serve-index');
 
 
 var folders = {
@@ -122,10 +124,10 @@ gulp.task('connect', function () {
     var connect = require('connect');
     var app = connect()
         .use(require('connect-livereload')({ port: 35729 }))
-        .use(connect.static(folders.src))
-        .use(connect.static(folders.app))
-        .use(connect.static(folders.tmp))
-        .use(connect.directory(folders.app));
+        .use(serveStatic(folders.src))
+        .use(serveStatic(folders.app))
+        .use(serveStatic(folders.tmp))
+        .use(serveIndex(folders.app));
 
     require('http').createServer(app)
         .listen(9000)
