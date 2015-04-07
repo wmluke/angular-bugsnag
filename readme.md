@@ -134,7 +134,7 @@ $ make
 $ gulp test
 ```
 
-Additionally, use `gulp serve` or `gulp watch` to run the test app. 
+Additionally, use `gulp serve` or `gulp watch` to run the test app. Just insert a Bugsnag API Key [here](https://github.com/wmluke/angular-bugsnag/blob/master/test/app/scripts/app.js#L8-8).  Remember, don't commit your key!
 
 ## License
 MIT
