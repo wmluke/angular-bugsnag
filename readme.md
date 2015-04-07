@@ -53,6 +53,38 @@ Call `noConflict()` **before** other settings to remove `bugsnag` from `window`.
 
 ### `beforeNotify`
 
+Takes an angular `providerFunction` or service name that should return a [beforeNotify](https://github.com/bugsnag/bugsnag-js#beforenotify) callback used by `bugsnag`.
+
+#### Examples
+
+Log notifications with `$log`:
+
+```js
+bugsnagProvider
+    .beforeNotify(['$log', function ($log) {
+       return function (error, metaData) {
+           $log.debug(error.name);
+           return true;
+       };
+    }])
+```
+
+`beforeNotify` can also take a service name defined elsewhere:
+
+```js
+
+module
+    .factory('bugsnagNotificationInterceptor', ['$log', function ($log) {
+        return function (error, metaData) {
+            $log.debug(error.name);
+            return true;
+        };
+    }])
+
+bugsnagProvider
+    .beforeNotify('bugsnagNotificationInterceptor')
+```
+
 ### Example Usage
 
 ```javascript
