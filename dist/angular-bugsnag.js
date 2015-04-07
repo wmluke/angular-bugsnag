@@ -1,5 +1,5 @@
 /**! 
- * @license angular-bugsnag v0.1.4
+ * @license angular-bugsnag v0.2.0
  * Copyright (c) 2013 Luke Bunselmeyer <wmlukeb@gmail.com>. https://github.com/wmluke/angular-bugsnag
  * License: MIT
  */
