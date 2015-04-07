@@ -24,12 +24,42 @@ Load the `angular-bugsnag` module into your app...
 angular.module('app', ['angular-bugsnag'])
 ```
 
-## Example Usage
+## `bugsnagProvider` configuration
+
+The `bugsnagProvider` has pretty much the same [configuration](https://github.com/bugsnag/bugsnag-js#configuration) options as `bugsnag`.  
+
+The main difference is that `bugsnagProvider` uses chainable setter methods instead of properties.
+
+### `noConflict`
+Call `noConflict()` **before** other settings to remove `bugsnag` from `window`.
+
+### `apiKey`
+
+### `releaseStage`
+
+### `notifyReleaseStages`
+
+### `appVersion`
+
+### `user`
+
+### `projectRoot`
+
+### `endpoint`
+
+### `metaData`
+
+### `autoNotify`
+
+### `beforeNotify`
+
+### Example Usage
 
 ```javascript
 angular.module('demo-app', ['angular-bugsnag'])
     .config(['bugsnagProvider', function (bugsnagProvider) {
         bugsnagProvider
+            .noConflict()
             .apiKey('[replace me]')
             .releaseStage('development')
             .user({
@@ -62,6 +92,17 @@ angular.module('demo-app', ['angular-bugsnag'])
 
     }]);
 ```
+
+## Contributing
+
+PR's are welcome.  Just make sure the tests pass.
+
+```bash
+$ make
+$ gulp test
+```
+
+Additionally, use `gulp serve` or `gulp watch` to run the test app. 
 
 ## License
 MIT

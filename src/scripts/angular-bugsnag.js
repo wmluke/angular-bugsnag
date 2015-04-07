@@ -7,9 +7,14 @@
         .config(['$provide', function ($provide) {
             $provide.provider({
                 bugsnag: function () {
-                    _bugsnag = _bugsnag || Bugsnag.noConflict();
+                    _bugsnag = Bugsnag;
                     var _self = this;
                     var _beforeNotify;
+
+                    this.noConflict = function () {
+                        _bugsnag = Bugsnag.noConflict();
+                        return _self;
+                    };
 
                     this.apiKey = function (apiKey) {
                         _bugsnag.apiKey = apiKey;

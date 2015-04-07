@@ -4,6 +4,7 @@
     angular.module('demo-app', ['angular-bugsnag'])
         .config(['bugsnagProvider', function (bugsnagProvider) {
             bugsnagProvider
+                //.noConflict()
                 .apiKey('[replace me]')
                 .releaseStage('development')
                 .user({
