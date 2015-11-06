@@ -7,6 +7,11 @@
         .config(['$provide', function ($provide) {
             $provide.provider({
                 bugsnag: function () {
+
+                    if (typeof Bugsnag === 'undefined') {
+                        var Bugsnag = {};
+                    }
+
                     _bugsnag = Bugsnag;
                     var _self = this;
                     var _beforeNotify;
