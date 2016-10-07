@@ -24,7 +24,7 @@
     ],
     "dependencies": {
         "angular": "1.x",
-        "bugsnag": "2.x"
+        "bugsnag": "3.x"
     },
     "devDependencies": {
         "jquery": "~2.1.1",
