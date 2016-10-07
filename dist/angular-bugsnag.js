@@ -1,5 +1,5 @@
 /**! 
- * @license angular-bugsnag v0.2.0
+ * @license angular-bugsnag v0.2.1
  * Copyright (c) 2013 Luke Bunselmeyer <wmlukeb@gmail.com>. https://github.com/wmluke/angular-bugsnag
  * License: MIT
  */
@@ -12,6 +12,16 @@
         .config(['$provide', function ($provide) {
             $provide.provider({
                 bugsnag: function () {
+
+                    // if a script blocker blocks the bugsnag library Bugsnag will be undefined at this point, so we initialize it to an object
+                    // with methods that do nothing but are declared and won't throw errors later by the angular-bugsnag
+                    // module calling them
+                    var Bugsnag = window.Bugsnag || {
+                        notifyException: function () {},
+                        notify: function () {},
+                        noConflict: function () {}
+                    };
+
                     _bugsnag = Bugsnag;
                     var _self = this;
                     var _beforeNotify;

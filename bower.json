@@ -1,6 +1,6 @@
 {
     "name": "angular-bugsnag",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "author": "Luke Bunselmeyer <wmlukeb@gmail.com>",
     "homepage": "https://github.com/wmluke/angular-bugsnag",
     "repository": {
